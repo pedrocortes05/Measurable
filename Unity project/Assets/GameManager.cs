@@ -14,6 +14,15 @@ public class GameManager : MonoBehaviour
     public Button goToItemFormButton;
     public Button goToBinFormButton;
     public Button ordenarButton;
+    public Button goToMenuSilButton;
+    public Button silentButton;
+    public Button addPointButton;
+
+    public TapeManager tm;
+    public SpawnVisual sv;
+
+
+
     //public Button addBinButton;
     public List<ItemModel> Items;
     public List<BinModel> Bins;
@@ -33,6 +42,12 @@ public class GameManager : MonoBehaviour
         goToBinFormButton.GetComponent<Button>().onClick.AddListener(GoToBinForm);
         goToMenuButton2.GetComponent<Button>().onClick.AddListener(GoToMenu);
         ordenarButton.GetComponent<Button>().onClick.AddListener(trySort);
+        goToMenuSilButton.GetComponent<Button>().onClick.AddListener(GoToMenu);
+        silentButton.GetComponent<Button>().onClick.AddListener(GoToSilent);
+
+        addPointButton.GetComponent<Button>().onClick.AddListener(addsPoint);
+
+
 
     }
 
@@ -55,10 +70,15 @@ public class GameManager : MonoBehaviour
 
         packer.Pack();
 
-        foreach (ItemModel im in Bins[0].Items)
-        {
-            Debug.Log(im.String());
-        }
+        sv.spawnStuff();
+
+        //foreach (BinModel bm in Bins){
+        //    foreach (ItemModel im in bm.Items)
+        //    {
+        //        Debug.Log(im.String());
+        //    }
+        //} 
+        
         // Debug.Log("------");
         // foreach (BinModel bin in Bins)
         // {
@@ -83,10 +103,19 @@ public class GameManager : MonoBehaviour
         // }
         // Debug.Log("------");
     }
-    public void GoToMenu() { UnHideUI(UserInterfaces[0]); }
+    public void GoToMenu() {
+        UnHideUI(UserInterfaces[0]);
+        tm.clearAll();
+    }
     public void GoToItems() { UnHideUI(UserInterfaces[1]); }
     public void GoToItemForm() { UnHideUI(UserInterfaces[2]); }
     public void GoToBins() { UnHideUI(UserInterfaces[3]); }
     public void GoToBinForm() { UnHideUI(UserInterfaces[4]); }
+    public void GoToSilent() { UnHideUI(UserInterfaces[5]); }
+    public void addsPoint()
+    {
+        tm.placePin();
+    }
+
 
 }
