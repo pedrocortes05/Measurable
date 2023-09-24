@@ -235,11 +235,12 @@ public class BinModel
     public string String()
     {
         return string.Format(
-            "Bin: {0} ({1}x{2}x{3})",
+            "Bin: {0} ({1}x{2}x{3}) vol({4})",
             Name,
             Width,
             Height,
-            Depth
+            Depth,
+            GetVolume()
         );
     }
 }
