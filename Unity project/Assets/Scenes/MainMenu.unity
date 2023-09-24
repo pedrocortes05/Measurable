@@ -1521,7 +1521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 655}
+  m_AnchoredPosition: {x: 0, y: 655}
   m_SizeDelta: {x: 803.7058, y: 279.182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &300891222
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 586e32bddd9882543b3a570bb7ed1808, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3680443250145345ac4e9e6a99234a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5043,7 +5043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 45dc5bea0dd194b4f8a7c13eb08148a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca8080fd6442cf447a137d7953c715c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5143,8 +5143,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 792395466}
   m_HandleRect: {fileID: 792395465}
   m_Direction: 2
-  m_Value: -0.014925373
-  m_Size: 0.9999537
+  m_Value: 0
+  m_Size: 0.9999796
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6307,7 +6307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 190}
+  m_AnchoredPosition: {x: 0, y: 190}
   m_SizeDelta: {x: 803.7058, y: 279.182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1270086664
@@ -6374,7 +6374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c54e58c89665c04d97a5a250f850112, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bcfeac5c9c600a34b9a2f650a178f936, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8669,6 +8669,7 @@ MonoBehaviour:
   goToBinsButton: {fileID: 300891222}
   goToItemFormButton: {fileID: 955175973}
   goToBinFormButton: {fileID: 1499787629}
+  ordenarButton: {fileID: 1019388206}
   Items: []
   Bins: []
 --- !u!4 &1690674899
@@ -9224,8 +9225,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1081987333}
   m_HandleRect: {fileID: 1081987332}
   m_Direction: 2
-  m_Value: -0.014925373
-  m_Size: 0.9999537
+  m_Value: 0
+  m_Size: 0.9999796
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9870,7 +9871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000014781952, y: 0.033108477}
+  m_AnchoredPosition: {x: -0.000014781952, y: 0.03265739}
   m_SizeDelta: {x: 0, y: 1603.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1955905369
@@ -10064,7 +10065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000014781952, y: 0.033108477}
+  m_AnchoredPosition: {x: -0.000014781952, y: 0.03265739}
   m_SizeDelta: {x: 0, y: 1603.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2010439445
