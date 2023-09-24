@@ -1,13 +1,5 @@
 namespace ConsoleApp1;
 
-public class ThreeDBinPacker
-{
-    public void MyMethod()
-    {
-        System.Console.WriteLine("Creating my namespace");
-    }
-}
-
 // CONSTANTS
 public class RotationType
 {
@@ -118,6 +110,22 @@ public class ItemModel
                 return new List<double>();
         }
     }
+
+    public string String()
+    {
+        return string.Format(
+            "Item: {0} ({1}x{2}x{3}) pos({4}, {5}, {6}) rt({7})) vol({8})",
+            Name,
+            Width,
+            Height,
+            Depth,
+            Position[0],
+            Position[1],
+            Position[2],
+            Rotation,
+            GetVolume()
+        );
+    }
 }
 
 public class BinModel
@@ -222,6 +230,17 @@ public class BinModel
         }
 
         return fit;
+    }
+
+    public string String()
+    {
+        return string.Format(
+            "Bin: {0} ({1}x{2}x{3})",
+            Name,
+            Width,
+            Height,
+            Depth
+        );
     }
 }
 
