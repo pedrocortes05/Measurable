@@ -28,44 +28,51 @@ public class Axis
     public static readonly int[] ALL = new int[] { WIDTH, HEIGHT, DEPTH };
 }
 
-public bool RectIntersect(ItemModel item1, ItemModel item2, int x, int y)
+public class AuxilaryMethods
 {
-    double d1 = item1.GetDimension();
-    double d2 = item2.GetDimension();
+    public bool RectIntersect(ItemModel item1, ItemModel item2, int x, int y)
+    {
+        double d1 = item1.GetDimension();
+        double d2 = item2.GetDimension();
 
-    double cx1 = item1.Position[x] + d1[x]/2;
-    double cy1 = item1.Position[y] + d1[y]/2;
-    double cx2 = item2.Position[x] + d2[x]/2;
-    double cy2 = item2.Position[y] + d2[y]/2;
+        double cx1 = item1.Position[x] + d1[x]/2;
+        double cy1 = item1.Position[y] + d1[y]/2;
+        double cx2 = item2.Position[x] + d2[x]/2;
+        double cy2 = item2.Position[y] + d2[y]/2;
 
-    double ix = Math.Max(cx1, cx2) - Math.Min(cx1, cx2);
-    double iy = Math.Max(cy1, cy2) - Math.Min(cy1, cy2);
+        double ix = Math.Max(cx1, cx2) - Math.Min(cx1, cx2);
+        double iy = Math.Max(cy1, cy2) - Math.Min(cy1, cy2);
 
-    return ix < (d1[x]+d2[x])/2 && iy < (d1[y]+d2[y])/2;
+        return ix < (d1[x]+d2[x])/2 && iy < (d1[y]+d2[y])/2;
+    }
+
+    public bool Intersect(ItemModel item1, ItemModel item2)
+    {
+        return (
+            AuxilaryMethods.RectIntersect(item1, item2, Axis.WIDTH, Axis.HEIGHT) &&
+            AuxilaryMethods.RectIntersect(item1, item2, Axis.HEIGHT, Axis.DEPTH) &&
+            AuxilaryMethods.RectIntersect(item1, item2, Axis.WIDTH, Axis.DEPTH)
+        );
+    }
+
+    public double GetLimitNumberOfDecimals(int numberOfDecimals)
+    {
+        return Decimal("1." +  + new string('0', numberOfDecimals)); // Decimal doesnt exist yet
+    }
+
+    public double SetToDecimal(double value, int numberOfDecimals)
+    {
+        numberOfDecimals = AuxilaryMethods.GetLimitNumberOfDecimals(numberOfDecimals);
+        return Decimal(value).quantize(numberOfDecimals);  // What is quantize?
+    }
 }
 
-public bool Intersect(ItemModel item1, ItemModel item2)
+// GLOBALS
+public static class Globals
 {
-    return (
-        RectIntersect(item1, item2, Axis.WIDTH, Axis.HEIGHT) &&
-        RectIntersect(item1, item2, Axis.HEIGHT, Axis.DEPTH) &&
-        RectIntersect(item1, item2, Axis.WIDTH, Axis.DEPTH)
-    );
+    public static readonly int DEFAULT_NUMBER_OF_DECIMALS = 3;
+    public static readonly int[] START_POSITION = new int[] { 0, 0, 0 };
 }
-
-public double GetLimitNumberOfDecimals(int numberOfDecimals)
-{
-    return Decimal("1." +  + new string('0', numberOfDecimals)); // Decimal doesnt exist yet
-}
-
-public double SetToDecimal(double value, int numberOfDecimals)
-{
-    numberOfDecimals = GetLimitNumberOfDecimals(numberOfDecimals);
-    return Decimal(value).quantize(numberOfDecimals);  // What is quantize?
-}
-
-DEFAULT_NUMBER_OF_DECIMALS = 3
-START_POSITION = [0, 0, 0]
 
 // MODELS
 public class ItemModel
@@ -78,22 +85,22 @@ public class ItemModel
         Depth = depth;
         Weight = weight;
         RotationType = 0;
-        Position = START_POSITION;
-        NumberOfDecimals = DEFAULT_NUMBER_OF_DECIMALS;
+        Position = Globals.START_POSITION;
+        NumberOfDecimals = Globals.DEFAULT_NUMBER_OF_DECIMALS;
     }
 
     public void FormatNumbers(int numberOfDecimals)
     {
-        Width = SetToDecimal(Width, NumberOfDecimals);
-        Height = SetToDecimal(Height, NumberOfDecimals);
-        Depth = SetToDecimal(Depth, NumberOfDecimals);
-        Weight = SetToDecimal(Weight, NumberOfDecimals);
+        Width = AuxilaryMethods.SetToDecimal(Width, NumberOfDecimals);
+        Height = AuxilaryMethods.SetToDecimal(Height, NumberOfDecimals);
+        Depth = AuxilaryMethods.SetToDecimal(Depth, NumberOfDecimals);
+        Weight = AuxilaryMethods.SetToDecimal(Weight, NumberOfDecimals);
         NumberOfDecimals = numberOfDecimals;
     }
     
     public double GetVolume()
     {
-        return SetToDecimal(Width * Height * Depth, NumberOfDecimals);
+        return AuxilaryMethods.SetToDecimal(Width * Height * Depth, NumberOfDecimals);
     }
 
     public double GetDimension()
@@ -129,21 +136,21 @@ public class BinModel
         MaxWeight = maxWeight;
         Items = new List<ItemModel>();
         UnfittedItems = new List<ItemModel>();
-        NumberOfDecimals = DEFAULT_NUMBER_OF_DECIMALS;
+        NumberOfDecimals = Globals.DEFAULT_NUMBER_OF_DECIMALS;
     }
 
     public void FormatNumbers(int numberOfDecimals)
     {
-        Width = SetToDecimal(Width, NumberOfDecimals);
-        Height = SetToDecimal(Height, NumberOfDecimals);
-        Depth = SetToDecimal(Depth, NumberOfDecimals);
-        MaxWeight = SetToDecimal(MaxWeight, NumberOfDecimals);
+        Width = AuxilaryMethods.SetToDecimal(Width, NumberOfDecimals);
+        Height = AuxilaryMethods.SetToDecimal(Height, NumberOfDecimals);
+        Depth = AuxilaryMethods.SetToDecimal(Depth, NumberOfDecimals);
+        MaxWeight = AuxilaryMethods.SetToDecimal(MaxWeight, NumberOfDecimals);
         NumberOfDecimals = numberOfDecimals;
     }
 
     public double GetVolume()
     {
-        return SetToDecimal(Width * Height * Depth, NumberOfDecimals);
+        return AuxilaryMethods.SetToDecimal(Width * Height * Depth, NumberOfDecimals);
     }
 
     public double GetTotalWeight()
@@ -155,7 +162,7 @@ public class BinModel
             totalWeight += item.Weight;
         }
 
-        return SetToDecimal(totalWeight, NumberOfDecimals);
+        return AuxilaryMethods.SetToDecimal(totalWeight, NumberOfDecimals);
     }
 
     public bool PutItem(ItemModel item, List<int> pivot)
@@ -181,7 +188,7 @@ public class BinModel
 
             foreach (ItemModel currentItemInBin in Items)
             {
-                if (Intersect(currentItemInBin, item))
+                if (AuxilaryMethods.Intersect(currentItemInBin, item))
                 {
                     fit = false;
                     break;
@@ -243,7 +250,7 @@ public class PackerModel
 
         if (!bin.Items)
         {
-            response = bin.PutItem(item, START_POSITION);
+            response = bin.PutItem(item, Globals.START_POSITION);
 
             if (!response)
             {
@@ -259,31 +266,32 @@ public class PackerModel
 
             foreach (ItemModel ib in itemsInBin)
             {
-                pivot = [0, 0, 0]; //Can you do this????
-                w, h, d = ib.GetDimension();
+                int[] pivot = new int[] { 0, 0, 0 };
+                double w, h, d;
+                ib.GetDimension(out w, out h, out d);
                 if (axis == Axis.WIDTH)
                 {
-                    pivot = [
+                    int[] pivot = new int[] { 
                         ib.Position[0] + w,
                         ib.Position[1],
                         ib.Position[2]
-                    ];
+                    };
                 }
                 else if (axis == Axis.HEIGHT)
                 {
-                    pivot = [
+                    int[] pivot = new int[] { 
                         ib.Position[0],
                         ib.Position[1] + h,
                         ib.Position[2]
-                    ];
+                    };
                 }
                 else if (axis == Axis.DEPTH)
                 {
-                    pivot = [
+                    int[] pivot = new int[] { 
                         ib.Position[0],
                         ib.Position[1],
                         ib.Position[2] + d
-                    ];
+                    };
                 }
 
                 if (bin.PutItem(item, pivot))
@@ -304,7 +312,7 @@ public class PackerModel
         }
     }
 
-    public void Pack(bool biggerFirst = false, bool distributeItems = false, int numberOfDecimals = DEFAULT_NUMBER_OF_DECIMALS)
+    public void Pack(bool biggerFirst = false, bool distributeItems = false, int numberOfDecimals = Globals.DEFAULT_NUMBER_OF_DECIMALS)
     {
         foreach (BinModel bin in Bins)
         {
@@ -316,8 +324,39 @@ public class PackerModel
             item.FormatNumbers(numberOfDecimals);
         }
 
-        Bins.Sort(key=lambda bin: bin.GetVolume(), reverse=biggerFirst);
-        Items.Sort(key=lambda item: item.GetVolume(), reverse=biggerFirst);
+        Bins.Sort((bin1, bin2) => {
+            // Compare bins based on volume
+            double volume1 = bin1.GetVolume();
+            double volume2 = bin2.GetVolume();
+
+            if (biggerFirst)
+            {
+                // Sort in descending order (bigger first)
+                return volume2.CompareTo(volume1);
+            }
+            else
+            {
+                // Sort in ascending order (smaller first)
+                return volume1.CompareTo(volume2);
+            }
+        });
+
+        Items.Sort((item1, item2) => {
+            // Compare items based on volume
+            double volume1 = item1.GetVolume();
+            double volume2 = item2.GetVolume();
+
+            if (biggerFirst)
+            {
+                // Sort in descending order (bigger first)
+                return volume2.CompareTo(volume1);
+            }
+            else
+            {
+                // Sort in ascending order (smaller first)
+                return volume1.CompareTo(volume2);
+            }
+        });
 
         foreach (BinModel bin in Bins)
         {
