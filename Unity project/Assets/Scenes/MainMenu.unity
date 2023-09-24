@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1655,7 +1655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 655}
+  m_AnchoredPosition: {x: 0, y: 655}
   m_SizeDelta: {x: 803.7058, y: 279.182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &300891222
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 586e32bddd9882543b3a570bb7ed1808, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3680443250145345ac4e9e6a99234a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2016,11 +2016,14 @@ MonoBehaviour:
   tapeLines: []
   tapeTexts: []
   measurements: []
-  pinPrefab: {fileID: 4432805733747575894, guid: ae7a61a3379d74564a514925fb18222e, type: 3}
+  pinPrefab: {fileID: 4432805733747575894, guid: ae7a61a3379d74564a514925fb18222e,
+    type: 3}
   pinsParent: {fileID: 538218149}
-  linePrefab: {fileID: 5263028662790533914, guid: 2d042c0a1122c4406be792cf88707c3e, type: 3}
+  linePrefab: {fileID: 5263028662790533914, guid: 2d042c0a1122c4406be792cf88707c3e,
+    type: 3}
   lineParent: {fileID: 1916623473}
-  textPrefab: {fileID: 5923966389112015368, guid: b5abe1d548d0f4894a9d0ff780b90f05, type: 3}
+  textPrefab: {fileID: 5923966389112015368, guid: b5abe1d548d0f4894a9d0ff780b90f05,
+    type: 3}
   textParent: {fileID: 837451337}
   lookAtMe: {fileID: 783248694}
   reticle: {fileID: 1870750565}
@@ -5859,7 +5862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 45dc5bea0dd194b4f8a7c13eb08148a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca8080fd6442cf447a137d7953c715c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7155,7 +7158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 190}
+  m_AnchoredPosition: {x: 0, y: 190}
   m_SizeDelta: {x: 803.7058, y: 279.182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1270086664
@@ -7222,7 +7225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c54e58c89665c04d97a5a250f850112, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bcfeac5c9c600a34b9a2f650a178f936, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9757,11 +9760,11 @@ MonoBehaviour:
   goToItemFormButton: {fileID: 955175973}
   goToBinFormButton: {fileID: 1499787629}
   ordenarButton: {fileID: 1019388206}
-  goToMenuSilButton: {fileID: 2131742782}
-  silentButton: {fileID: 959547646}
-  addPointButton: {fileID: 1981201049}
-  tm: {fileID: 342930422}
-  sv: {fileID: 1690674902}
+  goToMenuSilButton: {fileID: 0}
+  silentButton: {fileID: 0}
+  addPointButton: {fileID: 0}
+  tm: {fileID: 0}
+  sv: {fileID: 0}
   Items: []
   Bins: []
 --- !u!4 &1690674899
@@ -9797,7 +9800,8 @@ MonoBehaviour:
   width: {fileID: 2117100640}
   height: {fileID: 1500700720}
   weight: {fileID: 1837751132}
-  itemIcon: {fileID: 4951898445181466838, guid: 380f1ce06afbaf04cb0ae0761498d715, type: 3}
+  itemIcon: {fileID: 4951898445181466838, guid: 380f1ce06afbaf04cb0ae0761498d715,
+    type: 3}
   content: {fileID: 2010439443}
   newItemButton: {fileID: 430452973}
 --- !u!114 &1690674901
@@ -9834,8 +9838,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1690674898}
-  binPrefab: {fileID: 4657922360994462499, guid: edbbd558522794e06b23b46d5d2e3323, type: 3}
-  itemPrefab: {fileID: 8688599970097709809, guid: 726f240da32144d25aa0f979a7c192f3, type: 3}
+  binPrefab: {fileID: 4657922360994462499, guid: edbbd558522794e06b23b46d5d2e3323,
+    type: 3}
+  itemPrefab: {fileID: 8688599970097709809, guid: 726f240da32144d25aa0f979a7c192f3,
+    type: 3}
 --- !u!1 &1694065567
 GameObject:
   m_ObjectHideFlags: 0
