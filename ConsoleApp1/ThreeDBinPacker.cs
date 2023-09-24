@@ -54,17 +54,6 @@ public class AuxilaryMethods
             RectIntersect(item1, item2, Axis.WIDTH, Axis.DEPTH)
         );
     }
-
-    public static double GetLimitNumberOfDecimals(int numberOfDecimals)
-    {
-        return Decimal("1." + new string('0', numberOfDecimals)); // Decimal doesnt exist yet
-    }
-
-    public static double SetToDecimal(double value, int numberOfDecimals)
-    {
-        numberOfDecimals = GetLimitNumberOfDecimals(numberOfDecimals);
-        return Decimal(value).quantize(numberOfDecimals);  // What is quantize?
-    }
 }
 
 // GLOBALS
@@ -84,7 +73,6 @@ public class ItemModel
     public double Weight { get; set; }
     public int Rotation { get; set; }
     public List<double> Position { get; set; }
-    public int NumberOfDecimals { get; set; }
 
     public ItemModel(string name, double width, double height, double depth, double weight)
     {
@@ -95,21 +83,19 @@ public class ItemModel
         Weight = weight;
         Rotation = 0;
         Position = Globals.START_POSITION;
-        NumberOfDecimals = Globals.DEFAULT_NUMBER_OF_DECIMALS;
     }
 
-    public void FormatNumbers(int numberOfDecimals)
+    public void FormatNumbers()
     {
-        Width = AuxilaryMethods.SetToDecimal(Width, NumberOfDecimals);
-        Height = AuxilaryMethods.SetToDecimal(Height, NumberOfDecimals);
-        Depth = AuxilaryMethods.SetToDecimal(Depth, NumberOfDecimals);
-        Weight = AuxilaryMethods.SetToDecimal(Weight, NumberOfDecimals);
-        NumberOfDecimals = numberOfDecimals;
+        Width = Convert.ToDouble(Width);
+        Height = Convert.ToDouble(Height);
+        Depth = Convert.ToDouble(Depth);
+        Weight = Convert.ToDouble(Weight);
     }
     
     public double GetVolume()
     {
-        return AuxilaryMethods.SetToDecimal(Width * Height * Depth, NumberOfDecimals);
+        return Convert.ToDouble(Width * Height * Depth);
     }
 
     public List<double> GetDimension()
@@ -143,7 +129,7 @@ public class BinModel
     public double MaxWeight { get; set; }
     public List<ItemModel> Items { get; set; }
     public List<ItemModel> UnfittedItems { get; set; }
-    public int NumberOfDecimals { get; set; }
+
 
     public BinModel(string name, double width, double height, double depth, double maxWeight)
     {
@@ -154,21 +140,19 @@ public class BinModel
         MaxWeight = maxWeight;
         Items = new List<ItemModel>();
         UnfittedItems = new List<ItemModel>();
-        NumberOfDecimals = Globals.DEFAULT_NUMBER_OF_DECIMALS;
     }
 
-    public void FormatNumbers(int numberOfDecimals)
+    public void FormatNumbers()
     {
-        Width = AuxilaryMethods.SetToDecimal(Width, NumberOfDecimals);
-        Height = AuxilaryMethods.SetToDecimal(Height, NumberOfDecimals);
-        Depth = AuxilaryMethods.SetToDecimal(Depth, NumberOfDecimals);
-        MaxWeight = AuxilaryMethods.SetToDecimal(MaxWeight, NumberOfDecimals);
-        NumberOfDecimals = numberOfDecimals;
+        Width = Convert.ToDouble(Width);
+        Height = Convert.ToDouble(Height);
+        Depth = Convert.ToDouble(Depth);
+        MaxWeight = Convert.ToDouble(MaxWeight);
     }
 
     public double GetVolume()
     {
-        return AuxilaryMethods.SetToDecimal(Width * Height * Depth, NumberOfDecimals);
+        return Convert.ToDouble(Width * Height * Depth);
     }
 
     public double GetTotalWeight()
@@ -180,7 +164,7 @@ public class BinModel
             totalWeight += item.Weight;
         }
 
-        return AuxilaryMethods.SetToDecimal(totalWeight, NumberOfDecimals);
+        return Convert.ToDouble(totalWeight);
     }
 
     public bool PutItem(ItemModel item, List<double> pivot)
@@ -337,16 +321,16 @@ public class PackerModel
         }
     }
 
-    public void Pack(bool biggerFirst = false, bool distributeItems = false, int numberOfDecimals = 3) //Globals.DEFAULT_NUMBER_OF_DECIMALS
+    public void Pack(bool biggerFirst = false, bool distributeItems = false)
     {
         foreach (BinModel bin in Bins)
         {
-            bin.FormatNumbers(numberOfDecimals);
+            bin.FormatNumbers();
         }
 
         foreach (ItemModel item in Items)
         {
-            item.FormatNumbers(numberOfDecimals);
+            item.FormatNumbers();
         }
 
         Bins.Sort((bin1, bin2) => {
