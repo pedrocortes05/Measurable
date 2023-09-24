@@ -58,6 +58,12 @@ public double GetLimitNumberOfDecimals(int numberOfDecimals)
     return Decimal("1." +  + new string('0', numberOfDecimals)); // Decimal doesnt exist yet
 }
 
+public double SetToDecimal(double value, int numberOfDecimals)
+{
+    numberOfDecimals = GetLimitNumberOfDecimals(numberOfDecimals);
+    return Decimal(value).quantize(numberOfDecimals);  // What is quantize?
+}
+
 DEFAULT_NUMBER_OF_DECIMALS = 3
 START_POSITION = [0, 0, 0]
 
